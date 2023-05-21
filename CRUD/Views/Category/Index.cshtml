@@ -3,26 +3,40 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="container p-3">
 
-<table class="table table-striped" style="width:100%"> 
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>DisplayOrder</th>
-            <th>CreatedDateTime</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Category m in Model)
-        {
-            <tr>
-                <td>@m.Id</td>
-                <td>@m.Name</td>
-                <td>@m.DisplayOrder</td>
-                <td>@m.CreatedDateTime</td>
+   <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Category List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
+                Create Category
+            </a>
+        </div>
+   </div>
+
+    <hr />
+
+    <table class="table table-hover">
+        <thead>
+            <tr class="table-dark">
+                <th>Id</th>
+                <th>Name</th>
+                <th>DisplayOrder</th>
+                <th>CreatedDateTime</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (Category m in Model)
+            {
+                <tr class="table-light">
+                    <td>@m.Id</td>
+                    <td>@m.Name</td>
+                    <td>@m.DisplayOrder</td>
+                    <td>@m.CreatedDateTime</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
