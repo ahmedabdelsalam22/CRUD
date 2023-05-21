@@ -18,5 +18,25 @@ namespace CRUD.Controllers
             IEnumerable<Category> categories = _context.Categories.ToList();    
             return View(categories);
         }
+
+        public IActionResult Create() 
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create(Category obj) 
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Categories.Add(obj);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            else 
+            {
+                return View();
+            }
+          
+        }
     }
 }
