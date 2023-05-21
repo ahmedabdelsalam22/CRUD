@@ -25,6 +25,9 @@
                 <th>Name</th>
                 <th>DisplayOrder</th>
                 <th>CreatedDateTime</th>
+                <th>
+                    Update
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -35,6 +38,11 @@
                     <td>@m.Name</td>
                     <td>@m.DisplayOrder</td>
                     <td>@m.CreatedDateTime</td>
+                    <td>
+                        <a asp-controller="Category" asp-action="Update" asp-route-id="@m.Id" class="btn btn-primary">
+                            <i class="bi bi-pencil-square"></i> &nbsp; Update
+                        </a>
+                    </td>
                 </tr>
             }
         </tbody>
