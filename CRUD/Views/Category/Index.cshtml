@@ -6,21 +6,25 @@
 <h1>Index</h1>
 
 <table class="table table-striped" style="width:100%"> 
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>DisplayOrder</th>
-        <th>CreatedDateTime</th>
-    </tr>
-
-    @foreach(Category m in Model)
-    {
+    <thead>
         <tr>
-            <td>@m.Id</td>
-            <td>@m.Name</td>
-            <td>@m.DisplayOrder</td>
-            <td>@m.CreatedDateTime</td>
+            <th>Id</th>
+            <th>Name</th>
+            <th>DisplayOrder</th>
+            <th>CreatedDateTime</th>
         </tr>
-    }
+    </thead>
+
+    <tbody>
+        @foreach (Category m in Model)
+        {
+            <tr>
+                <td>@m.Id</td>
+                <td>@m.Name</td>
+                <td>@m.DisplayOrder</td>
+                <td>@m.CreatedDateTime</td>
+            </tr>
+        }
+    </tbody>
 
 </table>
