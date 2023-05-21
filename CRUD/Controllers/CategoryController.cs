@@ -2,6 +2,7 @@
 using CRUD.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace CRUD.Controllers
 {
@@ -44,6 +45,28 @@ namespace CRUD.Controllers
                 return View(obj);
             }
           
+        }
+
+        public IActionResult Update(int id) 
+        {
+            var obj = _context.Categories.Where(x => x.Id == id).FirstOrDefault();
+            if(obj == null) 
+            {
+                 ModelState.AddModelError("CustomError", "No Categories with this id");
+            }
+            return View(obj);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(Category obj) 
+        {
+            if (ModelState.IsValid) 
+            {
+                _context.Categories.Update(obj);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return View(obj);
         }
     }
 }
