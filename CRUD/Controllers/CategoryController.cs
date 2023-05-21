@@ -1,6 +1,7 @@
 ﻿using CRUD.Data;
 using CRUD.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace CRUD.Controllers
 {
@@ -24,8 +25,14 @@ namespace CRUD.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Category obj) 
         {
+             
+            if (obj.Name == obj.DisplayOrder.ToString()) // manual validation(custome) .. 
+            {
+                 ModelState.AddModelError("CustomeError", "Name and DisplayOrder must not be the same");
+            }
             if (ModelState.IsValid)
             {
                 _context.Categories.Add(obj);
@@ -34,7 +41,7 @@ namespace CRUD.Controllers
             }
             else 
             {
-                return View();
+                return View(obj);
             }
           
         }
